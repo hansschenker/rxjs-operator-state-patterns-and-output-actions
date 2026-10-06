@@ -22,12 +22,12 @@ Downstream `next`, `error`, and `complete` are only some of those actions. Subsc
 | AP-06 | Read Stored State | Emit something previously stored. |
 | AP-07 | Combine / Join | Derive one value from several remembered inputs. |
 | AP-08 | Batch / Aggregate | Emit a collection instead of individual values. |
-| AP-09 | Route / Group | Choose a destination: group, partition, window. |
+| AP-09 | Route / Group | Choose a destination: group or window. `partition` only when the source is shared. |
 | AP-10 | Delay / Time-Shift | Emit later, on a scheduler. |
 | AP-11 | Trigger / Sample | Emit a stored value when a timer or notifier fires. |
 | AP-12 | Merge / Interleave | Forward from every active producer. |
 | AP-13 | Serialize | Forward one producer at a time, in order. |
-| AP-14 | Current-Wins | Forward only the selected producer. Cancelling the old one is part of the policy. |
+| AP-14 | Current-Wins | Forward only the selected producer and cancel the others. Latest-wins replaces the selection (`switchMap`); First-Wins selects once (`race`). |
 | AP-15 | Terminate | Complete or error, and stop. |
 
 ## AP-01 Forward
@@ -64,7 +64,7 @@ Emit many stored values as one value. `bufferCount` flushes an array. `toArray` 
 
 ## AP-09 Route / Group
 
-Choose a destination. The value is unchanged. `partition` sends each value to one of two outputs. `groupBy` routes later values to the existing group.
+Choose a destination. The value is unchanged. `groupBy` routes later values to the existing group. `window` routes values into the current window. `partition` only looks like routing: in RxJS 7 it returns two `filter` observables that each subscribe the source on their own, so a cold source runs twice and its side effects run twice. It routes only when the source is shared.
 
 ## AP-10 Delay / Time-Shift
 
@@ -84,7 +84,7 @@ Forward one producer at a time, in order. `concat` and `concatMap` subscribe the
 
 ## AP-14 Current-Wins
 
-Forward only the currently selected producer. A new winner replaces the selection, and the old producer is cancelled.
+Forward only the currently selected producer and cancel the others. Two selection rules exist. Latest-wins: a new candidate replaces the selection and the old producer is cancelled, as in `switchMap`, `switchAll`, `switchScan`, and `timeoutWith`. First-Wins: the selection is made once, on the first `next`, and is never replaced, as in `race`. Before a winner exists, a complete or error from any source is forwarded and ends the race.
 
 ```text
 source next(x)
@@ -94,7 +94,7 @@ inner next(y)
   forward(y)
 ```
 
-`switchMap` and `race` are this policy. `exhaustMap` is not: it never replaces the active inner.
+`switchMap` is Latest-wins. `race` is First-Wins. `exhaustMap` is neither: it never replaces the active inner.
 
 ## AP-15 Terminate
 

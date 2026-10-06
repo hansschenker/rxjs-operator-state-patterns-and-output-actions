@@ -30,7 +30,7 @@ It does not decide what gets emitted. An operator can carry several patterns at 
 
 ## ST-01 Identity
 
-Nothing new is stored. This is the teaching form of `map`, `filter`, `tap`, and `pluck` if the emission index is ignored. The interesting behavior is on the action side.
+Nothing new is stored. This is the exact form of `tap` and `pluck`, whose callbacks receive no index, and the teaching form of `map` and `filter` if the emission index is ignored. The interesting behavior is on the action side.
 
 ## ST-02 Replace Latest
 

@@ -275,6 +275,7 @@ clicks$.pipe(throttleTime(200))
 
 ```ts
 of(of(1, 2), of(10)).pipe(combineLatestAll())
+// inners are collected until the outer completes, then all are subscribed together
 // [2, 10] once both inners have a slot, then on any later inner update
 
 of(of(1), of(2, 3)).pipe(concatAll())
@@ -359,7 +360,8 @@ of(1).pipe(delay(200))
 // 1 at 200ms, complete also delayed
 
 of('a', 'b').pipe(delayWhen(() => interval(100)))
-// each value waits until its duration inner emits; order is kept
+// each value waits for its own duration inner to first emit; order is kept here only because every duration is interval(100)
+// different durations can reorder values, and a duration that completes without emitting drops its value
 
 of(Notification.createNext(1)).pipe(dematerialize())
 // next(1), complete
