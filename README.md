@@ -25,7 +25,7 @@ The 15 + 15 lists are a behavioral vocabulary, not a proof that the set is compl
 
 ## Contents
 
-- [Reading guide: the Mealy machine in the context of RxJS](mealy-machine-in-context-of-rxjs.md) — the chain of reasoning behind docs 07 to 10, in 14 steps, with a glossary
+- [Reading guide: the Mealy machine in the context of RxJS](mealy-machine-in-context-of-rxjs.md) — the chain of reasoning behind docs 07 to 16 in 15 steps, a summary of the seven operator families and the four rules that hold across them, and a glossary
 - [Model](docs/01-model.md) — Mealy reading, the formula, and the corrections that made Action Policy the formal term
 - [State transition patterns](docs/02-state-transition-patterns.md) — ST-01 to ST-15
 - [Action policies](docs/03-action-policies.md) — AP-01 to AP-15
