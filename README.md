@@ -31,6 +31,17 @@ The 15 + 15 lists are a behavioral vocabulary, not a proof that the set is compl
 - [One example per policy](docs/04-policy-examples.md)
 - [Operator catalog](docs/05-operator-catalog.md) — each operator from the uploaded list, as state transition :: action policies
 - [One example per operator](docs/06-operator-examples.md)
+- [Evaluation of the operator catalog](docs/07-catalog-evaluation.md) — every row checked against RxJS 7.8.2 source; corrections applied
+- [Operational tests for the state transition patterns](docs/08-state-transition-pattern-tests.md) — one discriminating experiment per ST pattern, runnable
+
+## Running the tests
+
+The patterns in `docs/08` are backed by a Vitest suite in `tests/`, run in virtual time with `TestScheduler`.
+
+```sh
+npm install
+npm test
+```
 
 ## The two questions
 
