@@ -106,7 +106,9 @@ Smaller omissions, listed once: `bufferCount` with `startBufferEvery`, `bufferTi
 
 ## 4. Inconsistent
 
-**Terminate.** `forkJoin` and `toArray` list Terminate. `combineLatest` and `zip` do not, although `combineLatest` completes immediately when any source completes without emitting, and `zip` completes when any completed source's queue drains. Either both groups name the decision or neither does. ST-15 in 02 gives the rule: name it when the operator decides termination. Both groups decide.
+**Terminate.** `forkJoin` and `toArray` list Terminate. `combineLatest` and `zip` do not, although `combineLatest` decides completion by counting its live sources down to zero, and `zip` completes when any completed source's queue drains. Either both groups name the decision or neither does. ST-15 in 02 gives the rule: name it when the operator decides termination. Both groups decide.
+
+Correction, 2026-10-06: an earlier version of this paragraph said `combineLatest` completes immediately when a source completes without emitting. It does not. That short-circuit belongs to `forkJoin`. `combineLatest` stays silent and completes only when every source has completed. See [12](12-join-family-step-tables.md), rows CL4 and FJ4. The Terminate tag on the row stands; the reason given for it was wrong.
 
 **Active Registry.** `merge`, `combineLatestAll`, `bufferToggle`, and `groupBy` list Active Registry. `combineLatest`, `forkJoin`, `zip`, and `race` subscribe all their sources concurrently and do not list it. ST-10 ("zero or more resources are active together") covers all of them.
 
