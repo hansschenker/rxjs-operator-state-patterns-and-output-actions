@@ -33,10 +33,11 @@ The 15 + 15 lists are a behavioral vocabulary, not a proof that the set is compl
 - [One example per operator](docs/06-operator-examples.md)
 - [Evaluation of the operator catalog](docs/07-catalog-evaluation.md) — every row checked against RxJS 7.8.2 source; corrections applied
 - [Operational tests for the state transition patterns](docs/08-state-transition-pattern-tests.md) — one discriminating experiment per ST pattern, runnable
+- [Operational tests for the action policy patterns](docs/09-action-policy-pattern-tests.md) — one discriminating experiment per AP pattern, runnable
 
 ## Running the tests
 
-The patterns in `docs/08` are backed by a Vitest suite in `tests/`, run in virtual time with `TestScheduler`.
+The patterns in `docs/08` and `docs/09` are backed by Vitest suites in `tests/`, run in virtual time with `TestScheduler`.
 
 ```sh
 npm install
