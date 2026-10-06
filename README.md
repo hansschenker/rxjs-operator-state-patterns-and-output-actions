@@ -41,10 +41,11 @@ The 15 + 15 lists are a behavioral vocabulary, not a proof that the set is compl
 - [Step tables for the multicasting family](docs/13-multicasting-family-step-tables.md) — `share` under each reset switch, `shareReplay`, `connectable`, every row verified; the family where a terminal is not absorbing
 - [Step tables for the buffering and windowing family](docs/14-buffering-family-step-tables.md) — the five buffer operators and their window twins, every row verified; where the twins read a notifier's terminal differently
 - [Step tables for the terminal deciders](docs/15-terminal-deciders-step-tables.md) — `take`, `takeLast`, `first`, `last`, `single`, `elementAt`, `find`, `every`, `isEmpty`, `defaultIfEmpty`, `throwIfEmpty`, every row verified; what each does on an empty source
+- [Step tables for the error-handling family](docs/16-error-handling-step-tables.md) — `retry` with count, delay and resetOnSuccess, `retryWhen`, `catchError`, every row verified; how many times, how soon, and the two notifier footguns
 
 ## Running the tests
 
-The patterns in `docs/08` and `docs/09` and the step tables in `docs/10` to `docs/15` are backed by Vitest suites in `tests/`, run in virtual time with `TestScheduler`.
+The patterns in `docs/08` and `docs/09` and the step tables in `docs/10` to `docs/16` are backed by Vitest suites in `tests/`, run in virtual time with `TestScheduler`.
 
 ```sh
 npm install
