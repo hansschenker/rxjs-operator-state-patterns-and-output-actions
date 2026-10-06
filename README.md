@@ -39,10 +39,11 @@ The 15 + 15 lists are a behavioral vocabulary, not a proof that the set is compl
 - [Step tables for the flattening family](docs/11-flattening-family-step-tables.md) — `mergeMap`, `concatMap`, `switchMap`, `exhaustMap`, every row verified, including outer-complete-while-inners-active and when `project` is called
 - [Step tables for the join family](docs/12-join-family-step-tables.md) — `combineLatest`, `zip`, `forkJoin`, `withLatestFrom`, every row verified, including a source completing before emitting or with a backlog
 - [Step tables for the multicasting family](docs/13-multicasting-family-step-tables.md) — `share` under each reset switch, `shareReplay`, `connectable`, every row verified; the family where a terminal is not absorbing
+- [Step tables for the buffering and windowing family](docs/14-buffering-family-step-tables.md) — the five buffer operators and their window twins, every row verified; where the twins read a notifier's terminal differently
 
 ## Running the tests
 
-The patterns in `docs/08` and `docs/09` and the step tables in `docs/10` to `docs/13` are backed by Vitest suites in `tests/`, run in virtual time with `TestScheduler`.
+The patterns in `docs/08` and `docs/09` and the step tables in `docs/10` to `docs/14` are backed by Vitest suites in `tests/`, run in virtual time with `TestScheduler`.
 
 ```sh
 npm install
